@@ -4,15 +4,13 @@ namespace Bu4ak\Promocode;
 
 use Illuminate\Support\ServiceProvider;
 
-
 /**
- * Class PromocodeServiceProvider
- * @package Bu4ak\Promocode
+ * Class PromocodeServiceProvider.
  */
 class PromocodeServiceProvider extends ServiceProvider
 {
     /**
-     * load migrations
+     * load migrations.
      */
     public function boot()
     {

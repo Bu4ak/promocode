@@ -5,12 +5,10 @@ namespace Bu4ak\Promocode\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Promocode
- * @package Bu4ak\Promocode\Models
+ * Class Promocode.
  */
 class Promocode extends Model
 {
-
     /**
      * @var array
      */
