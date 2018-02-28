@@ -4,26 +4,18 @@ namespace Bu4ak\Promocode;
 
 use Illuminate\Support\ServiceProvider;
 
+
 /**
- * Class InvitedUserServiceProvider
- * @package InvitedUser
+ * Class PromocodeServiceProvider
+ * @package Bu4ak\Promocode
  */
 class PromocodeServiceProvider extends ServiceProvider
 {
     /**
-     *
+     * load migrations
      */
     public function boot()
     {
-        $this->publishes([
-            __DIR__ . '/../database/migrations/' => database_path('migrations'),
-        ], 'migrations');
-    }
-
-    /**
-     *
-     */
-    public function register()
-    {
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations/');
     }
 }
