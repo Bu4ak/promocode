@@ -1,0 +1,29 @@
+{
+  "name": "bu4ak/promocode",
+  "keywords": [
+    "laravel",
+    "promocode"
+  ],
+  "license": "MIT",
+  "version": "1.0.0",
+  "minimum-stability": "stable",
+  "authors": [
+    {
+      "name": "Bu4ak",
+      "email": "igorbu4@gmail.com"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Bu4ak\Promocode\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Bu4ak\\Promocode\\PromocodeServiceProvider"
+      ]
+    }
+  }
+}
