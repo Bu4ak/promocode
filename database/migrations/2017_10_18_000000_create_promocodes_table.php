@@ -18,7 +18,6 @@ class CreatePromocodesTable extends Migration
             $table->string('code', 30)->unique();
             $table->string('hash', 64)->unique();
             $table->tinyInteger('discount');
-
             $table->timestamps();
 
             $table->index('hash');
