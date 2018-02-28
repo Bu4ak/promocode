@@ -15,9 +15,10 @@ class CreatePromocodesTable extends Migration
     {
         Schema::create('promocodes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code')->unique();
+            $table->string('code', 30)->unique();
+            $table->string('hash', 64)->unique();
             $table->tinyInteger('discount');
-            $table->string('hash', 60)->unique();
+
             $table->timestamps();
 
             $table->index('hash');

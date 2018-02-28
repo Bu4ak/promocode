@@ -6,7 +6,7 @@
   ],
   "license": "MIT",
   "version": "1.0.0",
-  "minimum-stability": "stable",
+  "minimum-stability": "dev",
   "authors": [
     {
       "name": "Bu4ak",
@@ -16,7 +16,7 @@
   "require": {},
   "autoload": {
     "psr-4": {
-      "Bu4ak\Promocode\\": "src/"
+      "Bu4ak\\Promocode\\": "src/"
     }
   },
   "extra": {

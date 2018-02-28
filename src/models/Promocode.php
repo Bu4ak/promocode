@@ -1,13 +1,12 @@
 <?php
 
-namespace Bu4ak\Promocode;
+namespace Bu4ak\Promocode\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 /**
  * Class Promocode
- * @package App
+ * @package Bu4ak\Promocode\Models
  */
 class Promocode extends Model
 {
@@ -20,35 +19,33 @@ class Promocode extends Model
     ];
 
     /**
-     * @param int $length
-     * @param int $discount
-     * @return $this|Model
+     * @var array
      */
-    public static function generateCode($length = 8, $discount = 10)
+    protected $hidden = [
+        'updated_at',
+    ];
+
+    /**
+     * @param $discount
+     */
+    public function setDiscountAttribute(int $discount)
     {
-        $randomString = substr(str_shuffle('23456789ABCDEFGHJKMNPQRSTUVWXYZ'), 0, $length);
-
-        if (self::where('code', $randomString)->exists()) {
-            return self::generateCode($length, $discount);
-        }
-
-        $discount = self::normalizeDiscount($discount);
-
-        return self::create(['discount' => $discount, 'code' => $randomString, 'hash' => Str::random(60)]);
+        $this->attributes['discount'] = ($discount > 100) ? 100 : ($discount < 1) ? 1 : $discount;
     }
 
     /**
      * @param int $discount
-     * @return int
+     * @param int $length
+     *
+     * @return $this|Model
      */
-    private static function normalizeDiscount(int $discount): int
+    public static function generate(int $discount = 10, int $length = 8): self
     {
-        if ($discount > 99) {
-            $discount = 99;
-        } elseif ($discount < 1) {
-            $discount = 1;
-        }
+        $code = substr(str_shuffle('23456789ABCDEFGHJKMNPQRSTVWXYZ'), 0, $length);
+        $hash = hash('sha256', $code);
 
-        return $discount;
+        return self::whereCode($code)->exists()
+            ? self::generate($discount, $length)
+            : self::create(compact('code', 'discount', 'hash'));
     }
 }
