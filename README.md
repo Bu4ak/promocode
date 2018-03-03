@@ -1,5 +1,8 @@
 #### A small model that generates a discount code
 
+##### Installation:
+* `composer require bu4ak/promocode`
+* `php artisan migrate`
 ##### Usage example:
 * Generate:
 ```php
