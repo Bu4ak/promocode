@@ -2,10 +2,15 @@
 
 namespace Bu4ak\Promocode\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Promocode.
+ *
+ * @method static Builder whereCode(string $code)
+ * @method static Builder whereHash(string $hash)
+ * @method static self create(array $attributes)
  */
 class Promocode extends Model
 {
@@ -24,9 +29,9 @@ class Promocode extends Model
     ];
 
     /**
-     * @param $discount
+     * @param int $discount
      */
-    public function setDiscountAttribute(int $discount)
+    public function setDiscountAttribute(int $discount): void
     {
         $this->attributes['discount'] = ($discount > 100) ? 100 : ($discount < 1) ? 1 : $discount;
     }
@@ -35,7 +40,7 @@ class Promocode extends Model
      * @param int $discount
      * @param int $length
      *
-     * @return $this|Model
+     * @return self
      */
     public static function generate(int $discount = 10, int $length = 8): self
     {
